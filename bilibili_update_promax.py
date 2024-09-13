@@ -28,9 +28,21 @@ class BilibiliNotifier:
 
     def get_webpage_content(self, url):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--window-size=1920x1080")
+        chrome_options.add_argument("--headless")  # 启用无头模式
+        chrome_options.add_argument("--disable-gpu")  # 禁用 GPU 渲染
+        chrome_options.add_argument("--no-sandbox")  # 避免 root 权限问题
+        chrome_options.add_argument("--disable-dev-shm-usage")  # 解决共享内存问题
+        chrome_options.add_argument("--window-size=1920x1080")  # 设置窗口大小
+
+        # 模拟真实浏览器的 User-Agent
+        chrome_options.add_argument(
+            "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        )
+
+        # 禁用自动化控制标志
+        chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+        chrome_options.add_experimental_option('useAutomationExtension', False)
+
 
         service = Service()
         driver = webdriver.Chrome(service=service, options=chrome_options)
