@@ -143,8 +143,8 @@ def print_running_tasks():
 
 def start_notifier(up_id, notify_mode, target_text=None):
     sender_email = "k.onband.fan@gmail.com"
-    receiver_email = "sorrow233@proton.me"
-    password = "your mail app_password"
+    receiver_email = "receiver_email"
+    password = "hpaj otpg igpr ynuo"
 
     notifier = BilibiliNotifier(notify_mode, up_id, target_text, sender_email, receiver_email, password)
 
